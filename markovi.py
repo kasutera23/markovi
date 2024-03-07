@@ -11,5 +11,9 @@ result = mecab.parse(markov_text)
 result_replace = result.replace('。', '。\n')
 
 text_model = markovify.NewlineText(result_replace, well_formed=True, reject_reg="[〜・？！：；／＠％（）〔〕［］｛｝〈〉《》「」『』【】]", state_size=2)
-for i in range(15):
-    print(text_model.make_short_sentence(280, tries=50).replace(' ', '')) 
+for i in range(10):
+    print(text_model.make_short_sentence(280, tries=50).replace(' ', '').replace('◯', '') + '\n--------------------------------') 
+
+
+rs = '\n' + text_model.make_sentence().replace(' ', '').replace('◯', '')
+print(rs + '('+ str(len(rs)) +')')
